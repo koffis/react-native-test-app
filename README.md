@@ -24,11 +24,11 @@ expo start
 ## Preview
 You can see how an app looks like on this screenshots.
 
-###.android
+###android
 ![Android](YRGallery/src/common/img/android.jpg)
 
 
-###.ios
+###ios
 ![iOS](YRGallery/src/common/img/ios.jpg)
 
 ### video presentation 
