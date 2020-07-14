@@ -3,24 +3,28 @@ import {Text, TouchableOpacity, View, StyleSheet, Image, TextInput} from "react-
 import search from '../common/img/search.png';
 import close from '../common/img/close.png'
 import {connect} from "react-redux";
-import {getData} from "../Redux/app-reducer";
+import {getData, getSort} from "../Redux/app-reducer";
 
 const Menu = (props) => {
-    useEffect(getData('latest'));
     const [isSearching, searchStatus] = useState(false);
     const [value, onChangeText] = useState(null);
 
-    return (
+    useEffect(() => {
+
+    }, [value]);
+
+
+  return (
         <View style={styles.menu}>
             {isSearching === false
                 ? <View style={styles.quickSearch}>
-                    <TouchableOpacity onPress={() => props.getData('order_by=latest')}>
+                    <TouchableOpacity onPress={() => props.getData('latest')}>
                         <Text style={styles.menuItem}>Latest</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.getData('order_by=popular')}>
+                    <TouchableOpacity onPress={() => props.getData('popular')}>
                         <Text style={styles.menuItem}>Popular</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.getData('order_by=oldest')}>
+                    <TouchableOpacity onPress={() => props.getData('oldest')}>
                         <Text style={styles.menuItem}>Oldest</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => searchStatus(true)}>
@@ -30,11 +34,11 @@ const Menu = (props) => {
 
                 : <View style={styles.searchPlace}>
                     <TouchableOpacity onPress={() => searchStatus(false)}>
-                        <Image source={close} style={styles.icon}/>
+                        <Image source={close} style={styles.iconClose}/>
                     </TouchableOpacity>
-                    <TextInput onChangeText={text => onChangeText(text)} value={value} placeholder={' What are u searching?'}
+                    <TextInput onChangeText={text => onChangeText(text)} value={value} placeholder={'What are u searching?'}
                                style={styles.searchInput}/>
-                    <TouchableOpacity onPress={() => props.getData(`query=${value}`)}>
+                    <TouchableOpacity onPress={() => props.getSort(value)}>
                         <Image source={search} style={styles.icon}/>
                     </TouchableOpacity>
                 </View>
@@ -70,7 +74,7 @@ const styles = StyleSheet.create({
 
     },
     searchInput: {
-
+        paddingHorizontal: 13,
         marginHorizontal: 5,
         borderWidth: 1,
         borderRadius: 20,
@@ -81,6 +85,10 @@ const styles = StyleSheet.create({
         flex: 0.9,
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    iconClose: {
+        width: 20,
+        height: 20
     }
 });
 
@@ -88,4 +96,4 @@ const mapStateToProps = (state) => ({
    data: state.app.data
 });
 
-export default connect(mapStateToProps, {getData})(Menu);
+export default connect(mapStateToProps, {getData, getSort})(Menu);

@@ -8,7 +8,7 @@ import Menu from "./Menu";
 
 class MainScreen extends React.Component {
     componentDidMount() {
-        this.props.getData('order_by=latest');
+        this.props.getData('latest');
     }
 
     render() {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     footer: {
         borderColor: "#7d7f84",
         borderTopWidth: 1,
-        marginBottom: 16,
+        marginBottom: 11,
         alignItems:'center',
         justifyContent: 'center',
         height: 50,

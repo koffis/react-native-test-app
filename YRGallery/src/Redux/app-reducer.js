@@ -26,5 +26,10 @@ export const getData = (order) => (dispatch) => {
     })
 };
 
+export const getSort = (query) => (dispatch) => {
+    unsplashAPI.getSort(query).then(response =>
+        dispatch(setData(response.data.results))
+    )
+};
 
 export default appReducer;
