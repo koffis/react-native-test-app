@@ -13,8 +13,8 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 data: action.payload
             };
-      default:
-        return state;
+        default:
+            return state;
     }
 };
 
@@ -22,8 +22,9 @@ export const setData = (payload) => ({type: SET_DATA, payload});
 
 export const getData = (order) => (dispatch) => {
     unsplashAPI.getLastPhotos(order).then((response) => {
-            dispatch(setData(response.data));
+        dispatch(setData(response.data));
     })
 };
+
 
 export default appReducer;

@@ -4,10 +4,11 @@ import {connect} from "react-redux";
 import {getData} from "../Redux/app-reducer";
 import Preloader from "../common/Preloader";
 import OnePhoto from "./OnePhoto";
+import Menu from "./Menu";
 
 class MainScreen extends React.Component {
     componentDidMount() {
-        this.props.getData('latest');
+        this.props.getData('order_by=latest');
     }
 
     render() {
@@ -30,21 +31,7 @@ class MainScreen extends React.Component {
 
             return (
                 <ScrollView>
-                    <View style={styles.menu}>
-                        <TouchableOpacity onPress={()=>this.props.getData('latest')}>
-                            <Text style={styles.menuItem}>Latest</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>this.props.getData('popular')}>
-                            <Text style={styles.menuItem}>Popular</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>this.props.getData('oldest')}>
-                            <Text style={styles.menuItem}>Oldest</Text>
-                        </TouchableOpacity>
-
-                        {/*<Button title={'Latest'}  onPress={()=>this.props.getData('latest')}/>
-                        <Button title={'Popular'} onPress={()=>this.props.getData('popular')}/>
-                        <Button title={'Oldest'} onPress={()=>this.props.getData('oldest')}/>*/}
-                    </View>
+                    <Menu/>
                     <View style={styles.mainArea}>
                         {photosArray}
                     </View>
@@ -66,15 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap"
     },
-    menu:{
-        backgroundColor: '#dcf5ff',
-        borderColor: '#7d7f84',
-        borderBottomWidth: 1,
-        height: '2%',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center'
-    },
+
     footer: {
         borderColor: "#7d7f84",
         borderTopWidth: 1,
@@ -83,10 +62,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 50,
         backgroundColor: '#85b3d1ff'
-    },
-    menuItem: {
-        fontSize: 18,
-        color: '#007AFF',
     }
 });
 
