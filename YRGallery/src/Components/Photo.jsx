@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Image, Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import like from '../common/img/heart.png'
 import star from '../common/img/star.png'
+import likeTrue from '../common/img/heartLike.png'
 
 const Photo = (props) => {
     const {source} = props.route.params;/*JSON.stringify(source)*/
@@ -44,7 +45,7 @@ const Photo = (props) => {
                     </TouchableOpacity>
                     : <TouchableOpacity style={styles.like} onPress={onUnlike}>
                         <View style={styles.liked}>
-                            <Image style={styles.likeIcon} source={like}/>
+                            <Image style={styles.likeIcon} source={likeTrue}/>
                             <Text style={styles.likeCount}>{count}</Text>
                         </View>
                     </TouchableOpacity>
@@ -58,14 +59,14 @@ const styles = StyleSheet.create({
     mainArea: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#b3c7d6ff'
+        justifyContent: 'flex-start',
+        backgroundColor: '#000'
     },
     text: {
         marginLeft: '2%',
         marginTop: '5%',
         alignSelf: 'flex-start',
-        color: '#2460A7ff'
+        color: '#fff'
     },
     image: {
         borderRadius: 10,
@@ -73,9 +74,9 @@ const styles = StyleSheet.create({
         height: "60%"
     },
     userImage: {
+        marginTop: 5,
         marginLeft: 10,
         borderRadius: 50,
-        marginTop: -60,
         marginBottom: '3%',
         alignSelf: "flex-start",
         width: 50,
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     },
     username: {
         fontSize: 18,
-        color: '#2460A7ff',
+        color: '#fff',
         marginTop: -50,
         marginBottom: 30,
         marginLeft: "18%",
@@ -98,15 +99,15 @@ const styles = StyleSheet.create({
     likeCount: {
         marginLeft: 2,
         alignSelf: 'center',
-        color: 'black',
+        color: '#fff',
         fontWeight: '600',
     },
     textUsername: {
         fontWeight: "700"
     },
     likeIcon: {
-        width: 28,
-        height: 28
+        width: 35,
+        height: 35
     },
     star: {
         width: 15,
@@ -115,17 +116,6 @@ const styles = StyleSheet.create({
     liked: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 55,
-        height: 55,
-        borderRadius: 50,
-        backgroundColor: '#009ccb',
-        shadowColor: "#07005c",
-        shadowOffset: {
-            width: 0,
-            height: 12,
-        },
-        shadowOpacity: 0.73,
-        shadowRadius: 16.00,
     },
     unliked: {
         justifyContent: 'center',
@@ -133,7 +123,7 @@ const styles = StyleSheet.create({
     },
     userInfo: {
         alignSelf: 'flex-start',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         marginTop: 5,
     },
     likeBlock: {

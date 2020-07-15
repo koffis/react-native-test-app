@@ -1,6 +1,5 @@
 import React from 'react';
-import {StyleSheet, View,} from 'react-native';
-import {Navbar} from "./src/Components/Navbar";
+import {StyleSheet, View} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -16,17 +15,28 @@ export default function App() {
     return (
             <Provider store={store}>
                 <NavigationContainer>
-                        <Navbar title={'Your gallery'}/>
-                        <Stack.Navigator>
+                    <Stack.Navigator>
                             <Stack.Screen
-                                name="Home"
+                                name="YRGallery"
                                 component={MainScreen}
+                                options={{
+                                    headerStyle: {
+                                        backgroundColor: '#000'
+                                    },
+                                    headerTintColor: '#737475'
+                                }}
                             />
                             <Stack.Screen
                                 name="Photo"
                                 component={Photo}
+                                options={{
+                                    headerStyle: {
+                                        backgroundColor: '#000'
+                                    },
+                                    headerTintColor: '#737475'
+                                }}
                             />
-                        </Stack.Navigator>
+                    </Stack.Navigator>
                 </NavigationContainer>
             </Provider>
     );
@@ -35,8 +45,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
     container: {
-        color: 'black'
-    },
+
+    }
 });
 
 

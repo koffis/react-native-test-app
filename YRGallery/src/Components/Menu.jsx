@@ -33,7 +33,12 @@ const Menu = (props) => {
                 </View>
 
                 : <View style={styles.searchPlace}>
-                    <TouchableOpacity onPress={() => searchStatus(false)}>
+                    <TouchableOpacity onPress={() => {
+                        onChangeText(null);
+                        searchStatus(false);
+
+                    }
+                    }>
                         <Image source={close} style={styles.iconClose}/>
                     </TouchableOpacity>
                     <TextInput onChangeText={text => onChangeText(text)} value={value} placeholder={'What are u searching?'}
@@ -50,17 +55,17 @@ const Menu = (props) => {
 
 const styles = StyleSheet.create({
     menu: {
-        backgroundColor: '#dcf5ff',
+        backgroundColor: '#000000',
         borderColor: '#7d7f84',
         borderBottomWidth: 1,
-        height: '2%',
+        height: 50,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center'
     },
     menuItem: {
         fontSize: 18,
-        color: '#007AFF',
+        color: '#aeb2b5',
     },
     icon: {
         width: 28,
@@ -74,10 +79,12 @@ const styles = StyleSheet.create({
 
     },
     searchInput: {
+        backgroundColor: '#737475',
+        color: '#fff',
         paddingHorizontal: 13,
         marginHorizontal: 5,
         borderWidth: 1,
-        borderRadius: 20,
+        borderRadius: 10,
         width: '80%',
         height: 30
     },

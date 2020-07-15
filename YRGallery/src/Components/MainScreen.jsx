@@ -5,6 +5,7 @@ import {getData} from "../Redux/app-reducer";
 import Preloader from "../common/Preloader";
 import OnePhoto from "./OnePhoto";
 import Menu from "./Menu";
+import {useDarkMode} from "react-native-dynamic";
 
 class MainScreen extends React.Component {
     componentDidMount() {
@@ -30,17 +31,18 @@ class MainScreen extends React.Component {
         </TouchableOpacity>);
 
             return (
-                <ScrollView>
-                    <Menu/>
-                    <View style={styles.mainArea}>
-                        {photosArray}
-                    </View>
-                    <View style={styles.footer}>
-                        <Text>This App was created for passing test</Text>
-                        <Text>yaroslavkravch@gmail.com</Text>
-                    </View>
-                </ScrollView>
-
+                <View>
+                    <ScrollView>
+                        <Menu/>
+                        <View style={styles.mainArea}>
+                            {photosArray}
+                        </View>
+                        <View style={styles.footer}>
+                            <Text style={styles.footerText}>This app was created for passing test
+                                yaroslavkravch@gmail.com</Text>
+                        </View>
+                    </ScrollView>
+                </View>
             )
         }
 }
@@ -48,20 +50,23 @@ class MainScreen extends React.Component {
 const styles = StyleSheet.create({
     mainArea: {
         flex: 1,
-        justifyContent: 'space-around',
-        backgroundColor: '#b3c7d6ff',
+        justifyContent: 'space-between',
+        backgroundColor: '#000',
         flexDirection: "row",
         flexWrap: "wrap"
     },
 
     footer: {
-        borderColor: "#7d7f84",
+        marginTop: -2,
         borderTopWidth: 1,
-        marginBottom: 11,
         alignItems:'center',
         justifyContent: 'center',
         height: 50,
-        backgroundColor: '#85b3d1ff'
+        backgroundColor: '#484646'
+    },
+    footerText: {
+        textAlign: 'center',
+        color: '#fff'
     }
 });
 
