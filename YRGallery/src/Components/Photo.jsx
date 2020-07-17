@@ -26,13 +26,17 @@ const Photo = (props) => {
 
     return (
         <View style={styles.mainArea}>
-            <View style={styles.userInfo}>
-                <Image style={styles.userImage} source={userImage}/>
-                {name === 'xps'
-                    ? <Text style={styles.username}>{name} <Image source={star} style={styles.star}/></Text>
-                    : <Text style={styles.username}>{name}</Text>
-                }
-            </View>
+            <TouchableOpacity onPress={() => props.navigation.navigate('User', {
+                name: name
+            })}>
+                <View style={styles.userInfo}>
+                    <Image style={styles.userImage} source={userImage}/>
+                    {name === 'xps'
+                        ? <Text style={styles.username}>{name} <Image source={star} style={styles.star}/></Text>
+                        : <Text style={styles.username}>{name}</Text>
+                    }
+                </View>
+            </TouchableOpacity>
             <Image style={styles.image} source={source}/>
             <Text style={styles.text}><Text style={styles.textUsername}>@{name}:</Text> {text}</Text>
             <View style={styles.likeBlock}>
@@ -58,7 +62,7 @@ const Photo = (props) => {
 const styles = StyleSheet.create({
     mainArea: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'flex-start',
         backgroundColor: '#000'
     },
@@ -95,6 +99,11 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginBottom: -40,
         alignSelf: 'center',
+        ...Platform.select({
+            android: {
+                marginLeft: '45%'
+            }
+        })
     },
     likeCount: {
         marginLeft: 2,

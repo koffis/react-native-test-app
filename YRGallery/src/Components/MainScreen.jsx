@@ -5,12 +5,12 @@ import {getData} from "../Redux/app-reducer";
 import Preloader from "../common/Preloader";
 import OnePhoto from "./OnePhoto";
 import Menu from "./Menu";
-import {useDarkMode} from "react-native-dynamic";
 
 class MainScreen extends React.Component {
     componentDidMount() {
         this.props.getData('latest');
     }
+
 
     render() {
         if (!this.props.data) {
@@ -18,7 +18,6 @@ class MainScreen extends React.Component {
                 <Preloader/>
             );
         }
-
         let photosArray = this.props.data.map(p => <TouchableOpacity key={p.id} onPress={() => this.props.navigation.navigate('Photo', {
             source: {uri: `${p.urls.regular}`},
             userImage: {uri: `${p.user.profile_image.medium}`},
