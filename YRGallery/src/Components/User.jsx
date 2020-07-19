@@ -1,8 +1,9 @@
 import React, {useEffect} from "react";
-import {Text, View, StyleSheet, Image} from "react-native";
+import {Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from "react-native";
 import {connect} from "react-redux";
 import {getUser, getUserPhotos} from "../Redux/user-reducer";
 import Preloader from "../common/Preloader";
+import OnePhoto from "./OnePhoto";
 
 class User extends React.Component {
     componentDidMount() {
@@ -17,14 +18,28 @@ class User extends React.Component {
                 <Preloader/>
             );
         }
+        let photosArray = this.props.photos.map(p => <TouchableOpacity key={p.id} onPress={() => this.props.navigation.navigate('Photo', {
+            source: {uri: `${p.urls.regular}`},
+            userImage: {uri: `${p.user.profile_image.medium}`},
+            name: p.user.username,
+            text: p.alt_description,
+            likes: p.likes,
+            time: p.created_at
+        })}>
+            <OnePhoto text={p.user.username} source={{uri: `${p.urls.regular}`}}/>
+        </TouchableOpacity>);
         return (
-            <View style={styles.area}>
-                <View style={styles.userInfo}>
-                    <View style={styles.imageBorder}>
-                        <Image style={styles.userImage} source={{uri: this.props.userData.profile_image.large}}/>
-                    </View>
-                    <View style={styles.userInfoStats}>
+            <ScrollView>
+                <View style={styles.area}>
+                    <View style={styles.userInfo}>
+                        <View style={styles.imageBorder}>
+                            <Image style={styles.userImage} source={{uri: this.props.userData.profile_image.large}}/>
+                        </View>
                         <View style={styles.follow}>
+                            <View style={styles.follower}>
+                                <Text style={styles.followCount}>{this.props.userData.total_photos}</Text>
+                                <Text style={styles.followCount}>Photos</Text>
+                            </View>
                             <View style={styles.follower}>
                                 <Text style={styles.followCount}>{this.props.userData.followers_count}</Text>
                                 <Text style={styles.followCount}>Followers</Text>
@@ -34,13 +49,16 @@ class User extends React.Component {
                                 <Text style={styles.followCount}>Following</Text>
                             </View>
                         </View>
-                        <View style={styles.contacts}>
-                            <Text style={styles.bio}>Name: {this.props.userData.name}</Text>
-
-                        </View>
+                    </View>
+                    <View style={styles.contacts}>
+                        <Text style={styles.bio}>{this.props.userData.name}</Text>
+                        <Text style={styles.description}>{this.props.userData.bio}</Text>
+                    </View>
+                    <View style={styles.photoList}>
+                        {photosArray}
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -51,7 +69,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#000'
     },
     userInfo: {
-        marginTop: 10,
+        marginTop: 15,
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         flexDirection: 'row-reverse',
@@ -64,16 +82,12 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         alignSelf: 'center'
     },
-    username: {
-        color: '#fff',
-        fontWeight: '600',
-        fontSize: 22
-    },
     contacts: {
+        borderBottomWidth: 1,
+        borderColor: '#737475',
         marginTop: 15
     },
     imageBorder: {
-        marginTop: 40,
         width: 110,
         height: 110,
         alignSelf: 'flex-end',
@@ -83,22 +97,39 @@ const styles = StyleSheet.create({
         borderColor: '#fff'
     },
     follow: {
-        alignSelf: 'flex-end',
+        width: '69%',
+        justifyContent: 'space-around',
+        alignSelf: 'center',
         flexDirection: 'row',
     },
     follower: {
         paddingLeft: 7,
         alignItems: 'center'
     },
-    userInfoStats: {
-        width: '69%'
-    },
+
     followCount: {
         fontSize: 16,
         color: '#fff'
     },
     bio: {
-        color: '#fff'
+        marginRight: '2%',
+        color: '#fff',
+        alignSelf: 'flex-end',
+        fontSize: 17,
+        fontWeight: '600'
+    },
+    description: {
+        marginHorizontal: 15,
+        marginTop: 15,
+        color: '#fff',
+        marginBottom: 15
+    },
+    photoList: {
+        flex: 1,
+        justifyContent: 'space-between',
+        backgroundColor: '#000',
+        flexDirection: "row",
+        flexWrap: "wrap"
     }
 });
 

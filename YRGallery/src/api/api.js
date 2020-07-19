@@ -21,6 +21,6 @@ export const userAPI = {
         return instance.get(`/users/${username}`)
     },
     getUserPhotos(username){
-        return instance.get(`/users/${username}/photos`)
+        return instance.get(`/users/${username}/photos?per_page=30`)
     }
 };

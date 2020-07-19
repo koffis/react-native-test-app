@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 export default function App() {
     return (
         <Provider store={store}>
-            <NavigationContainer>
+            <NavigationContainer style={styles.container}>
                 <Stack.Navigator>
                     <Stack.Screen
                         name="YRGallery"
@@ -52,7 +52,9 @@ export default function App() {
 
 
 const styles = StyleSheet.create({
-    container: {}
+    container: {
+        color: 'black'
+    }
 });
 
 
