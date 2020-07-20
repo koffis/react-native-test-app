@@ -44,6 +44,12 @@ export default function App() {
                         options={({ route }) =>
                             ({ title: route.params.name, headerStyle: {backgroundColor: '#000'}, headerTintColor: '#737475'})}
                     />
+                    <Stack.Screen
+                        name="UserPhoto"
+                        component={Photo}
+                        options={({ route }) =>
+                            ({ title: route.params.name, headerStyle: {backgroundColor: '#000'}, headerTintColor: '#737475'})}
+                    />
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>

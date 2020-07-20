@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from "react-native";
 import {connect} from "react-redux";
 import {getUser, getUserPhotos} from "../Redux/user-reducer";
@@ -18,7 +18,7 @@ class User extends React.Component {
                 <Preloader/>
             );
         }
-        let photosArray = this.props.photos.map(p => <TouchableOpacity key={p.id} onPress={() => this.props.navigation.navigate('Photo', {
+        let photosArray = this.props.photos.map(p => <TouchableOpacity key={p.id} onPress={() => this.props.navigation.navigate('UserPhoto', {
             source: {uri: `${p.urls.regular}`},
             userImage: {uri: `${p.user.profile_image.medium}`},
             name: p.user.username,
@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     photoList: {
+        marginTop: 1,
         flex: 1,
         justifyContent: 'space-between',
         backgroundColor: '#000',

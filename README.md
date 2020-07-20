@@ -1,6 +1,6 @@
 # YRGallery
 
-YRGallery is a simple mobile app, which work with [unsplash](https://unsplash.com/) api. You can get 20 new, old or most popular photos, and information about them, like author and comment. 
+YRGallery is a simple mobile app, which work with [unsplash](https://unsplash.com/) api. You can get 30 new, old or most popular photos, and information about them, like author and comment. Also you can find photos with key-word help, and visit user profile, with his own portfolio.
 
 ## Installation
 
@@ -24,15 +24,13 @@ expo start
 ## Preview
 You can see how an app looks like on this screenshots.
 
-### android
-![Android](YRGallery/src/common/img/android.jpg)
+### IOS
+![Android](YRGallery/src/common/img/ios1.jpg)
 
-
-### ios
-![iOS](YRGallery/src/common/img/ios.jpg)
+![iOS](YRGallery/src/common/img/ios2.jpg)
 
 ### video presentation 
-![Video](YRGallery/src/common/img/ios.gif)
+![Video](YRGallery/src/common/img/iosVideo.gif)
 
 ## Enjoy
 It's my first mobile app, so don't be rude)
