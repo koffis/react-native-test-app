@@ -25,9 +25,9 @@ expo start
 You can see how an app looks like on this screenshots.
 
 ### IOS
-![Android](YRGallery/src/common/img/ios1.jpg)
+![Android](YRGallery/src/common/img/ios2.jpg)
 
-![iOS](YRGallery/src/common/img/ios2.jpg)
+![iOS](YRGallery/src/common/img/ios1.jpg)
 
 ### video presentation 
 ![Video](YRGallery/src/common/img/iosVideo.gif)
